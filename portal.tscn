@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhk3yp8fke6kt"]
+
+[ext_resource type="Script" path="res://portal.gd" id="1_elcb5"]
+[ext_resource type="Texture2D" uid="uid://cl3wedpgdguxc" path="res://icon.svg" id="1_h1we1"]
+
+[sub_resource type="GDScript" id="GDScript_efmg5"]
+script/source = "extends Area2D
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06mf0"]
+size = Vector2(16, 48)
+
+[node name="Portal" type="Node2D"]
+script = ExtResource("1_elcb5")
+
+[node name="PortalEntry" type="Area2D" parent="."]
+script = SubResource("GDScript_efmg5")
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="PortalEntry"]
+self_modulate = Color(0, 0, 1, 1)
+position = Vector2(-2.38419e-07, 0)
+scale = Vector2(0.125, 0.375)
+texture = ExtResource("1_h1we1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PortalEntry"]
+shape = SubResource("RectangleShape2D_06mf0")
+
+[node name="PortalExit" type="Area2D" parent="."]
+position = Vector2(64, 0)
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="PortalExit"]
+self_modulate = Color(0, 0, 1, 1)
+position = Vector2(-2.38419e-07, 0)
+scale = Vector2(0.125, 0.375)
+texture = ExtResource("1_h1we1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PortalExit"]
+shape = SubResource("RectangleShape2D_06mf0")
+
+[connection signal="body_entered" from="PortalEntry" to="." method="_onBodyEntered"]
