@@ -7,6 +7,8 @@
 size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_2ry5u")
 metadata/_edit_group_ = true
 
@@ -17,3 +19,7 @@ texture = ExtResource("1_mvwfl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_rhlib")
+
+[node name="DelayedJumpTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
