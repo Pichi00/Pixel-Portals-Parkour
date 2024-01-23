@@ -1,0 +1,185 @@
+[gd_scene load_steps=10 format=3 uid="uid://qpc28e3q4jrq"]
+
+[ext_resource type="PackedScene" uid="uid://bb3frs7ontu8q" path="res://player.tscn" id="1_yx3g1"]
+[ext_resource type="Texture2D" uid="uid://cl3wedpgdguxc" path="res://icon.svg" id="2_dep6g"]
+[ext_resource type="PackedScene" uid="uid://c3qhvb0r1a8bm" path="res://spikes.tscn" id="3_gbol3"]
+[ext_resource type="PackedScene" uid="uid://dhk3yp8fke6kt" path="res://portal.tscn" id="3_wko58"]
+[ext_resource type="Script" path="res://goal.gd" id="5_ofjnw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ac3d"]
+size = Vector2(96, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qbyi"]
+size = Vector2(48, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wswju"]
+size = Vector2(128, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3pw2"]
+size = Vector2(16, 32)
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_yx3g1")]
+position = Vector2(96, 456)
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Platform" type="StaticBody2D" parent="Platforms"]
+position = Vector2(512, 424)
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Platforms/Platform"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.75, 0.125)
+texture = ExtResource("2_dep6g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform"]
+shape = SubResource("RectangleShape2D_7ac3d")
+
+[node name="Platform2" type="StaticBody2D" parent="Platforms"]
+position = Vector2(304, 472)
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Platforms/Platform2"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.375, 0.125)
+texture = ExtResource("2_dep6g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform2"]
+shape = SubResource("RectangleShape2D_0qbyi")
+
+[node name="Platform3" type="StaticBody2D" parent="Platforms"]
+position = Vector2(-424, 448)
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Platforms/Platform3"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(1, 0.125)
+texture = ExtResource("2_dep6g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform3"]
+shape = SubResource("RectangleShape2D_wswju")
+
+[node name="Platform4" type="StaticBody2D" parent="Platforms"]
+position = Vector2(640, 312)
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Platforms/Platform4"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(1, 0.125)
+texture = ExtResource("2_dep6g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform4"]
+shape = SubResource("RectangleShape2D_wswju")
+
+[node name="Platform5" type="StaticBody2D" parent="Platforms"]
+position = Vector2(896, 96)
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Platforms/Platform5"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(1, 0.125)
+texture = ExtResource("2_dep6g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform5"]
+shape = SubResource("RectangleShape2D_wswju")
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(-8, 336)
+rotation = 1.5708
+scale = Vector2(10, 1)
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Walls/Wall"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(1, 0.125)
+texture = ExtResource("2_dep6g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall"]
+shape = SubResource("RectangleShape2D_wswju")
+
+[node name="Wall2" type="StaticBody2D" parent="Walls"]
+position = Vector2(968, 408)
+rotation = 1.5708
+scale = Vector2(10, 1)
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Walls/Wall2"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(1, 0.125)
+texture = ExtResource("2_dep6g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2"]
+shape = SubResource("RectangleShape2D_wswju")
+
+[node name="Wall3" type="StaticBody2D" parent="Walls"]
+position = Vector2(368, 536)
+scale = Vector2(10, 1)
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Walls/Wall3"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(1, 0.125)
+texture = ExtResource("2_dep6g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall3"]
+shape = SubResource("RectangleShape2D_wswju")
+
+[node name="Spikes" type="Node2D" parent="."]
+position = Vector2(952, 264)
+
+[node name="Spikes" parent="Spikes" instance=ExtResource("3_gbol3")]
+position = Vector2(-96, 256)
+
+[node name="Spikes3" parent="Spikes" instance=ExtResource("3_gbol3")]
+position = Vector2(-304, 256)
+
+[node name="Spikes4" parent="Spikes" instance=ExtResource("3_gbol3")]
+position = Vector2(-512, 256)
+
+[node name="Portal" parent="." instance=ExtResource("3_wko58")]
+position = Vector2(80, 472)
+
+[node name="PortalEntry" parent="Portal" index="0"]
+position = Vector2(72, 48)
+rotation = -1.57079
+collision_layer = 4
+collision_mask = 2
+
+[node name="PortalExit" parent="Portal" index="1"]
+position = Vector2(72, -152)
+rotation = -1.57079
+
+[node name="Icon" parent="Portal/PortalExit" index="0"]
+position = Vector2(9, 0)
+
+[node name="CollisionShape2D" parent="Portal/PortalExit" index="1"]
+position = Vector2(9, 0)
+
+[node name="PortalSwitch" parent="Portal" index="2"]
+position = Vector2(872, -208)
+
+[node name="Icon" parent="Portal/PortalSwitch" index="0"]
+position = Vector2(-2.38419e-07, 5.72205e-06)
+scale = Vector2(0.125, 0.125)
+
+[node name="Goal" type="Area2D" parent="."]
+position = Vector2(936, 72)
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("5_ofjnw")
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Goal"]
+scale = Vector2(0.125, 0.25)
+texture = ExtResource("2_dep6g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+shape = SubResource("RectangleShape2D_n3pw2")
+
+[connection signal="body_entered" from="Goal" to="Goal" method="_on_body_entered" flags=18]
+
+[editable path="Portal"]

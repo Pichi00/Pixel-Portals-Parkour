@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 250.0
+const JUMP_VELOCITY = -360.0
 var start_position = Vector2.ZERO
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -10,6 +10,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var delayedJump = false
 
 func die():
+	self.velocity = Vector2.ZERO
 	self.global_position = start_position
 
 func _ready():

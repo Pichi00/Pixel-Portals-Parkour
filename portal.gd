@@ -7,11 +7,12 @@ var portalSwitch
 func _ready():
 	$PortalEntry/CollisionShape2D.disabled = disabled
 	portalExit = $PortalExit
-	portalSwitch = $PortalSwitch
 
 func _onPortalBodyEntered(body:Node2D):
-	body.global_position.x = portalExit.global_position.x
-	body.global_position.y = portalExit.global_position.y
+	body.velocity = Vector2.ZERO
+	body.global_position = portalExit.global_position
+	
 
-func _onSwitchBodyEntered(body:Node2D):
+func _onSwitchBodyEntered(_body:Node2D):
+	$PortalSwitch/Icon.self_modulate = Color(0, 1, 0, 1)
 	$PortalEntry/CollisionShape2D.set_deferred("disabled", false)

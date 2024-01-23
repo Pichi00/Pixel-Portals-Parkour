@@ -1,0 +1,202 @@
+[gd_scene load_steps=11 format=3 uid="uid://iwvedoygf2c7"]
+
+[ext_resource type="PackedScene" uid="uid://bb3frs7ontu8q" path="res://player.tscn" id="1_i5q2w"]
+[ext_resource type="Texture2D" uid="uid://cl3wedpgdguxc" path="res://icon.svg" id="2_yenig"]
+[ext_resource type="PackedScene" uid="uid://c3qhvb0r1a8bm" path="res://spikes.tscn" id="3_mltq3"]
+[ext_resource type="Script" path="res://portal.gd" id="4_38476"]
+[ext_resource type="Script" path="res://goal.gd" id="5_ux23n"]
+[ext_resource type="PackedScene" uid="uid://cvxynsk6lyb1i" path="res://levels/level3.tscn" id="6_6jxbs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v81bj"]
+size = Vector2(128, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06mf0"]
+size = Vector2(16, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4k57"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3pw2"]
+size = Vector2(16, 32)
+
+[node name="Level2" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_i5q2w")]
+position = Vector2(24, 520)
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Platform" type="StaticBody2D" parent="Platforms"]
+position = Vector2(512, 408)
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Platforms/Platform"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(1, 0.125)
+texture = ExtResource("2_yenig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform"]
+shape = SubResource("RectangleShape2D_v81bj")
+
+[node name="Platform2" type="StaticBody2D" parent="Platforms"]
+position = Vector2(256, 472)
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Platforms/Platform2"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(1, 0.125)
+texture = ExtResource("2_yenig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform2"]
+shape = SubResource("RectangleShape2D_v81bj")
+
+[node name="Platform4" type="StaticBody2D" parent="Platforms"]
+position = Vector2(768, 352)
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Platforms/Platform4"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(1, 0.125)
+texture = ExtResource("2_yenig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform4"]
+shape = SubResource("RectangleShape2D_v81bj")
+
+[node name="Platform5" type="StaticBody2D" parent="Platforms"]
+position = Vector2(896, 96)
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Platforms/Platform5"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(1, 0.125)
+texture = ExtResource("2_yenig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform5"]
+shape = SubResource("RectangleShape2D_v81bj")
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(-8, 336)
+rotation = 1.5708
+scale = Vector2(10, 1)
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Walls/Wall"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(1, 0.125)
+texture = ExtResource("2_yenig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall"]
+shape = SubResource("RectangleShape2D_v81bj")
+
+[node name="Wall2" type="StaticBody2D" parent="Walls"]
+position = Vector2(968, 408)
+rotation = 1.5708
+scale = Vector2(10, 1)
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Walls/Wall2"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(1, 0.125)
+texture = ExtResource("2_yenig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2"]
+shape = SubResource("RectangleShape2D_v81bj")
+
+[node name="Wall3" type="StaticBody2D" parent="Walls"]
+position = Vector2(368, 536)
+scale = Vector2(10, 1)
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Walls/Wall3"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(1, 0.125)
+texture = ExtResource("2_yenig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall3"]
+shape = SubResource("RectangleShape2D_v81bj")
+
+[node name="Spikes" type="Node2D" parent="."]
+position = Vector2(952, 264)
+
+[node name="Spikes" parent="Spikes" instance=ExtResource("3_mltq3")]
+position = Vector2(-96, 256)
+
+[node name="Spikes3" parent="Spikes" instance=ExtResource("3_mltq3")]
+position = Vector2(-304, 256)
+
+[node name="Spikes4" parent="Spikes" instance=ExtResource("3_mltq3")]
+position = Vector2(-512, 256)
+
+[node name="Spikes5" parent="Spikes" instance=ExtResource("3_mltq3")]
+position = Vector2(-720, 256)
+
+[node name="Portal" type="Node2D" parent="."]
+position = Vector2(80, 472)
+script = ExtResource("4_38476")
+disabled = true
+
+[node name="PortalEntry" type="Area2D" parent="Portal"]
+position = Vector2(856, -16)
+rotation = -1.57079
+collision_layer = 4
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Portal/PortalEntry"]
+self_modulate = Color(0, 0, 1, 1)
+position = Vector2(-2.38419e-07, 0)
+scale = Vector2(0.125, 0.375)
+texture = ExtResource("2_yenig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal/PortalEntry"]
+position = Vector2(6.10352e-05, 0)
+shape = SubResource("RectangleShape2D_06mf0")
+
+[node name="PortalExit" type="Area2D" parent="Portal"]
+position = Vector2(776, -464)
+rotation = -1.57079
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Portal/PortalExit"]
+self_modulate = Color(0, 0, 1, 1)
+position = Vector2(-2.38419e-07, 0)
+scale = Vector2(0.125, 0.375)
+texture = ExtResource("2_yenig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal/PortalExit"]
+shape = SubResource("RectangleShape2D_06mf0")
+
+[node name="PortalSwitch" type="Area2D" parent="Portal"]
+position = Vector2(872, -208)
+collision_layer = 4
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Portal/PortalSwitch"]
+position = Vector2(-2.38419e-07, 5.72205e-06)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_yenig")
+
+[node name="SwitchCollision" type="CollisionShape2D" parent="Portal/PortalSwitch"]
+shape = SubResource("RectangleShape2D_k4k57")
+
+[node name="Goal" type="Area2D" parent="."]
+position = Vector2(952, 72)
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("5_ux23n")
+targetScene = ExtResource("6_6jxbs")
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Goal"]
+scale = Vector2(0.125, 0.25)
+texture = ExtResource("2_yenig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+shape = SubResource("RectangleShape2D_n3pw2")
+
+[connection signal="body_entered" from="Portal/PortalEntry" to="Portal" method="_onPortalBodyEntered" flags=18]
+[connection signal="body_entered" from="Portal/PortalSwitch" to="Portal" method="_onSwitchBodyEntered" flags=18]
+[connection signal="body_entered" from="Goal" to="Goal" method="_on_body_entered" flags=18]
