@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://bb3frs7ontu8q" path="res://player.tscn" id="1_2g86k"]
 [ext_resource type="PackedScene" uid="uid://c3qhvb0r1a8bm" path="res://spikes.tscn" id="3_exfdu"]
 [ext_resource type="PackedScene" uid="uid://cbtb4la8awb2d" path="res://collapsable_platform.tscn" id="3_yjyvm"]
-[ext_resource type="PackedScene" uid="uid://qpc28e3q4jrq" path="res://levels/test_level.tscn" id="4_2frn2"]
 [ext_resource type="PackedScene" uid="uid://dhk3yp8fke6kt" path="res://portal.tscn" id="7_15gry"]
 [ext_resource type="PackedScene" uid="uid://c7c4nuhni0ek" path="res://goal.tscn" id="7_ecnsq"]
+[ext_resource type="PackedScene" uid="uid://ddo7fhnceffvk" path="res://levels/level5.tscn" id="8_qpt2g"]
 [ext_resource type="PackedScene" uid="uid://bbc3l3tmvv0xu" path="res://tile_map.tscn" id="9_p6k77"]
 
 [node name="Level4" type="Node2D"]
@@ -15,7 +15,7 @@
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_2g86k")]
-position = Vector2(80, 488)
+position = Vector2(16, 520)
 
 [node name="Platforms" type="Node2D" parent="."]
 
@@ -70,7 +70,7 @@ rotation = 1.5708
 color = Color(0, 1, 0, 1)
 
 [node name="PortalEntry" parent="Portal2" index="0"]
-position = Vector2(423.997, -872.002)
+position = Vector2(311.997, -872.001)
 rotation = 3.14159
 
 [node name="PortalExit" parent="Portal2" index="1"]
@@ -217,7 +217,7 @@ position = Vector2(-400, 256)
 
 [node name="Goal" parent="." instance=ExtResource("7_ecnsq")]
 position = Vector2(944, 80)
-targetScene = ExtResource("4_2frn2")
+targetScene = ExtResource("8_qpt2g")
 
 [editable path="Platforms/Platform2"]
 [editable path="Platforms/Platform3"]
