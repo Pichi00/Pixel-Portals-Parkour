@@ -3,9 +3,10 @@ extends Node2D
 var portalExit
 var portalSwitch
 @export var disabled = false
+@export var color:Color = Color.BLUE
 
 func _ready():
-	$PortalEntry/CollisionShape2D.disabled = disabled
+	_initiate()
 	portalExit = $PortalExit
 
 func _onPortalBodyEntered(body:Node2D):
@@ -14,5 +15,18 @@ func _onPortalBodyEntered(body:Node2D):
 	
 
 func _onSwitchBodyEntered(_body:Node2D):
-	$PortalSwitch/Icon.self_modulate = Color(0, 1, 0, 1)
-	$PortalEntry/CollisionShape2D.set_deferred("disabled", false)
+	if(disabled):
+		disabled = false
+		$PortalSwitch/Icon.play("switch")
+		$PortalEntry/CollisionShape2D.set_deferred("disabled", disabled)
+		$PortalEntry/Particles.emitting = !disabled
+		$PortalExit/Particles.emitting = !disabled
+
+func _initiate():
+	$PortalEntry/CollisionShape2D.disabled = disabled
+	$PortalEntry/Particles.emitting = !disabled
+	$PortalExit/Particles.emitting = !disabled
+	for child in get_children():
+		child.get_child(0).self_modulate = color
+	$PortalEntry/Particles.color = color
+	$PortalExit/Particles.color = color

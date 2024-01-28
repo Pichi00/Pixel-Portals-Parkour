@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bb3frs7ontu8q"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_2ry5u"]
-[ext_resource type="Texture2D" uid="uid://cl3wedpgdguxc" path="res://icon.svg" id="1_mvwfl"]
+[ext_resource type="Texture2D" uid="uid://dgx7blicxr8io" path="res://assets/character.png" id="2_kxp20"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rhlib"]
 size = Vector2(16, 16)
@@ -14,8 +14,8 @@ metadata/_edit_group_ = true
 
 [node name="Icon" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("1_mvwfl")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_kxp20")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_rhlib")

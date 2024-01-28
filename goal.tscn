@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c7c4nuhni0ek"]
 
 [ext_resource type="Script" path="res://goal.gd" id="1_5vvuw"]
-[ext_resource type="Texture2D" uid="uid://cl3wedpgdguxc" path="res://icon.svg" id="1_ex6eh"]
+[ext_resource type="Texture2D" uid="uid://bh2yberv2ojdf" path="res://assets/flag.png" id="2_33tqr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n3pw2"]
 size = Vector2(16, 32)
@@ -10,10 +10,10 @@ size = Vector2(16, 32)
 collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_5vvuw")
+metadata/_edit_group_ = true
 
 [node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.125, 0.25)
-texture = ExtResource("1_ex6eh")
+texture = ExtResource("2_33tqr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_n3pw2")

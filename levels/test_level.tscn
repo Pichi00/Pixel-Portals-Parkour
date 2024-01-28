@@ -1,17 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://qpc28e3q4jrq"]
 
+[ext_resource type="PackedScene" uid="uid://d0t7c41jetwv2" path="res://background.tscn" id="1_to4pn"]
 [ext_resource type="PackedScene" uid="uid://bb3frs7ontu8q" path="res://player.tscn" id="1_yx3g1"]
 [ext_resource type="Texture2D" uid="uid://cl3wedpgdguxc" path="res://icon.svg" id="2_dep6g"]
 [ext_resource type="PackedScene" uid="uid://c3qhvb0r1a8bm" path="res://spikes.tscn" id="3_gbol3"]
 [ext_resource type="PackedScene" uid="uid://cbtb4la8awb2d" path="res://collapsable_platform.tscn" id="3_vfil5"]
 [ext_resource type="PackedScene" uid="uid://dhk3yp8fke6kt" path="res://portal.tscn" id="3_wko58"]
 [ext_resource type="Script" path="res://goal.gd" id="5_ofjnw"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ac3d"]
-size = Vector2(96, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qbyi"]
-size = Vector2(48, 16)
+[ext_resource type="PackedScene" uid="uid://bbc3l3tmvv0xu" path="res://tile_map.tscn" id="7_j8oo6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wswju"]
 size = Vector2(128, 16)
@@ -21,70 +17,12 @@ size = Vector2(16, 32)
 
 [node name="TestLevel" type="Node2D"]
 
+[node name="Background" parent="." instance=ExtResource("1_to4pn")]
+
 [node name="Player" parent="." instance=ExtResource("1_yx3g1")]
-position = Vector2(96, 456)
+position = Vector2(928, 56)
 
 [node name="Platforms" type="Node2D" parent="."]
-
-[node name="Platform" type="StaticBody2D" parent="Platforms"]
-position = Vector2(512, 424)
-metadata/_edit_group_ = true
-
-[node name="Icon" type="Sprite2D" parent="Platforms/Platform"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.75, 0.125)
-texture = ExtResource("2_dep6g")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform"]
-shape = SubResource("RectangleShape2D_7ac3d")
-
-[node name="Platform2" type="StaticBody2D" parent="Platforms"]
-position = Vector2(360, 344)
-metadata/_edit_group_ = true
-
-[node name="Icon" type="Sprite2D" parent="Platforms/Platform2"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.375, 0.125)
-texture = ExtResource("2_dep6g")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform2"]
-shape = SubResource("RectangleShape2D_0qbyi")
-
-[node name="Platform3" type="StaticBody2D" parent="Platforms"]
-position = Vector2(-424, 448)
-metadata/_edit_group_ = true
-
-[node name="Icon" type="Sprite2D" parent="Platforms/Platform3"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(1, 0.125)
-texture = ExtResource("2_dep6g")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform3"]
-shape = SubResource("RectangleShape2D_wswju")
-
-[node name="Platform4" type="StaticBody2D" parent="Platforms"]
-position = Vector2(640, 312)
-metadata/_edit_group_ = true
-
-[node name="Icon" type="Sprite2D" parent="Platforms/Platform4"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(1, 0.125)
-texture = ExtResource("2_dep6g")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform4"]
-shape = SubResource("RectangleShape2D_wswju")
-
-[node name="Platform5" type="StaticBody2D" parent="Platforms"]
-position = Vector2(896, 96)
-metadata/_edit_group_ = true
-
-[node name="Icon" type="Sprite2D" parent="Platforms/Platform5"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(1, 0.125)
-texture = ExtResource("2_dep6g")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform5"]
-shape = SubResource("RectangleShape2D_wswju")
 
 [node name="Platform6" parent="Platforms" instance=ExtResource("3_vfil5")]
 position = Vector2(152, 392)
@@ -146,6 +84,7 @@ position = Vector2(-512, 256)
 
 [node name="Portal" parent="." instance=ExtResource("3_wko58")]
 position = Vector2(80, 472)
+disabled = true
 
 [node name="PortalEntry" parent="Portal" index="0"]
 position = Vector2(72, 48)
@@ -155,21 +94,21 @@ rotation = -1.57079
 position = Vector2(72, -152)
 rotation = -1.57079
 
-[node name="Icon" parent="Portal/PortalExit" index="0"]
-position = Vector2(9, 0)
-
 [node name="CollisionShape2D" parent="Portal/PortalExit" index="1"]
-position = Vector2(9, 0)
+position = Vector2(4, 3.05176e-05)
 
 [node name="PortalSwitch" parent="Portal" index="2"]
-position = Vector2(872, -208)
+position = Vector2(152, 24)
 
 [node name="Icon" parent="Portal/PortalSwitch" index="0"]
 position = Vector2(-2.38419e-07, 5.72205e-06)
-scale = Vector2(0.125, 0.125)
+flip_h = true
+
+[node name="SwitchCollision" parent="Portal/PortalSwitch" index="1"]
+position = Vector2(10.5, 16)
 
 [node name="Goal" type="Area2D" parent="."]
-position = Vector2(936, 72)
+position = Vector2(48, 16)
 collision_layer = 16
 collision_mask = 2
 script = ExtResource("5_ofjnw")
@@ -181,6 +120,9 @@ texture = ExtResource("2_dep6g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
 shape = SubResource("RectangleShape2D_n3pw2")
+
+[node name="TileMap" parent="." instance=ExtResource("7_j8oo6")]
+layer_0/tile_data = PackedInt32Array(1376277, 1, 3, 1376278, 65537, 3, 1376279, 131073, 3, 1703965, 65537, 3, 1703966, 65537, 3, 1703967, 65537, 3, 1703968, 65537, 3, 1703969, 65537, 3, 1703970, 131073, 3, 1966096, 1, 3, 1966097, 65537, 3, 1966098, 65537, 3, 1966099, 131073, 3, 1507370, 1, 3, 1507371, 65537, 3, 1507372, 65537, 3, 1507373, 65537, 3, 1507374, 131073, 3, 1310757, 131073, 3, 1310756, 65537, 3, 1310755, 65537, 3, 1310754, 65537, 3, 1245217, 131073, 0, 1310753, 327681, 3, 1310752, 65537, 2, 1245216, 65537, 0, 1245215, 1, 0, 1310751, 1, 2, 1703964, 1, 3, 262203, 131073, 3, 262202, 65537, 3, 262201, 65537, 3, 262200, 65537, 3, 262199, 65537, 3, 262198, 1, 3, 655419, 131073, 3, 655418, 1, 3)
 
 [connection signal="body_entered" from="Goal" to="Goal" method="_on_body_entered" flags=18]
 

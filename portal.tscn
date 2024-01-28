@@ -1,13 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhk3yp8fke6kt"]
+[gd_scene load_steps=10 format=3 uid="uid://dhk3yp8fke6kt"]
 
 [ext_resource type="Script" path="res://portal.gd" id="1_elcb5"]
-[ext_resource type="Texture2D" uid="uid://cl3wedpgdguxc" path="res://icon.svg" id="1_h1we1"]
+[ext_resource type="Texture2D" uid="uid://dso70e61fmwa2" path="res://assets/basicPortal.png" id="2_yej17"]
+[ext_resource type="Texture2D" uid="uid://baor3tdpihrjm" path="res://assets/switch.png" id="4_koga7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b71w2"]
+size = Vector2(8, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bgba7"]
-size = Vector2(16, 48)
+size = Vector2(8, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0rar"]
+atlas = ExtResource("4_koga7")
+region = Rect2(23, 0, 23, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66tem"]
+atlas = ExtResource("4_koga7")
+region = Rect2(0, 0, 23, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6jcey"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0rar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66tem")
+}],
+"loop": false,
+"name": &"switch",
+"speed": 60.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6q3j1"]
-size = Vector2(16, 48)
+size = Vector2(24, 32)
 
 [node name="Portal" type="Node2D"]
 script = ExtResource("1_elcb5")
@@ -20,11 +46,28 @@ metadata/_edit_group_ = true
 [node name="Icon" type="Sprite2D" parent="PortalEntry"]
 self_modulate = Color(0, 0, 1, 1)
 position = Vector2(-2.38419e-07, 0)
-scale = Vector2(0.125, 0.375)
-texture = ExtResource("1_h1we1")
+texture = ExtResource("2_yej17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PortalEntry"]
-shape = SubResource("RectangleShape2D_bgba7")
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_b71w2")
+
+[node name="Particles" type="CPUParticles2D" parent="PortalEntry"]
+texture_filter = 1
+position = Vector2(7, 0)
+preprocess = 10.0
+speed_scale = 1.5
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(4, 15)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(0, 0, 1, 1)
 
 [node name="PortalExit" type="Area2D" parent="."]
 position = Vector2(64, 0)
@@ -34,25 +77,42 @@ metadata/_edit_group_ = true
 
 [node name="Icon" type="Sprite2D" parent="PortalExit"]
 self_modulate = Color(0, 0, 1, 1)
-position = Vector2(-2.38419e-07, 0)
-scale = Vector2(0.125, 0.375)
-texture = ExtResource("1_h1we1")
+texture = ExtResource("2_yej17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PortalExit"]
+position = Vector2(-4, 0)
 shape = SubResource("RectangleShape2D_bgba7")
 
+[node name="Particles" type="CPUParticles2D" parent="PortalExit"]
+texture_filter = 1
+preprocess = 10.0
+speed_scale = 1.5
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(4, 15)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(0, 0, 1, 1)
+
 [node name="PortalSwitch" type="Area2D" parent="."]
-position = Vector2(128, 0)
+position = Vector2(135, 0)
 collision_layer = 4
 collision_mask = 2
 metadata/_edit_group_ = true
 
-[node name="Icon" type="Sprite2D" parent="PortalSwitch"]
-position = Vector2(-2.38419e-07, 0)
-scale = Vector2(0.125, 0.375)
-texture = ExtResource("1_h1we1")
+[node name="Icon" type="AnimatedSprite2D" parent="PortalSwitch"]
+self_modulate = Color(0, 0, 1, 1)
+position = Vector2(-13, -16)
+sprite_frames = SubResource("SpriteFrames_6jcey")
+animation = &"switch"
+centered = false
 
 [node name="SwitchCollision" type="CollisionShape2D" parent="PortalSwitch"]
+position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_6q3j1")
 
 [connection signal="body_entered" from="PortalEntry" to="." method="_onPortalBodyEntered"]

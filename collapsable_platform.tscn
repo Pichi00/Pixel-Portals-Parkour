@@ -1,22 +1,21 @@
 [gd_scene load_steps=5 format=3 uid="uid://cbtb4la8awb2d"]
 
 [ext_resource type="Script" path="res://collapsable_platform.gd" id="1_xuxg6"]
-[ext_resource type="Texture2D" uid="uid://cl3wedpgdguxc" path="res://icon.svg" id="1_yerev"]
+[ext_resource type="Texture2D" uid="uid://8idkwq1x8ac6" path="res://assets/collapsePlatform.png" id="2_odfqu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wswju"]
-size = Vector2(128, 16)
+size = Vector2(64, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ndw3j"]
-size = Vector2(128, 16)
+size = Vector2(64, 16)
 
 [node name="Platform" type="StaticBody2D"]
 collision_mask = 2
 script = ExtResource("1_xuxg6")
 
 [node name="Icon" type="Sprite2D" parent="."]
-modulate = Color(0.109804, 0.0784314, 0.0470588, 1)
-scale = Vector2(1, 0.125)
-texture = ExtResource("1_yerev")
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("2_odfqu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wswju")
