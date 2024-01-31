@@ -1,0 +1,474 @@
+[gd_scene load_steps=33 format=3 uid="uid://clf47rhigib8s"]
+
+[ext_resource type="StyleBox" uid="uid://cogvh1n3w3d3o" path="res://themes/buttonHoverStyle.tres" id="1_absir"]
+[ext_resource type="Script" path="res://main_menu.gd" id="2_1brc3"]
+[ext_resource type="StyleBox" uid="uid://yqt6rsrs5ba4" path="res://themes/buttonStyle.tres" id="2_pba51"]
+[ext_resource type="StyleBox" uid="uid://hsih0umsc552" path="res://themes/buttonPressedStyle.tres" id="3_ctcwr"]
+[ext_resource type="PackedScene" uid="uid://woc4qp61aeib" path="res://levels/level1.tscn" id="3_p5vf5"]
+[ext_resource type="Script" path="res://player_main_menu.gd" id="4_l3226"]
+[ext_resource type="Texture2D" uid="uid://dgx7blicxr8io" path="res://assets/character.png" id="5_kieq7"]
+[ext_resource type="Script" path="res://portal.gd" id="6_kbq2y"]
+[ext_resource type="Texture2D" uid="uid://dso70e61fmwa2" path="res://assets/basicPortal.png" id="7_u1qrk"]
+[ext_resource type="Texture2D" uid="uid://baor3tdpihrjm" path="res://assets/switch.png" id="8_00tpb"]
+[ext_resource type="PackedScene" uid="uid://bbc3l3tmvv0xu" path="res://tile_map.tscn" id="9_30h4m"]
+[ext_resource type="Script" path="res://player2_main_menu.gd" id="10_2kaw2"]
+[ext_resource type="Texture2D" uid="uid://cbou14ncmeovv" path="res://assets/ItchButton.png" id="10_vkavs"]
+[ext_resource type="Texture2D" uid="uid://btxbymt0tm5jn" path="res://assets/ItchButton-pressed.png" id="11_upl0m"]
+[ext_resource type="Texture2D" uid="uid://iv17272cv3gf" path="res://assets/ItchButton-hover.png" id="12_x8fp7"]
+[ext_resource type="Texture2D" uid="uid://cp8wypauegohq" path="res://assets/xButton.png" id="14_fskxe"]
+[ext_resource type="Texture2D" uid="uid://d1xqt77yunjgi" path="res://assets/xButtonClick.png" id="15_ve4to"]
+[ext_resource type="Texture2D" uid="uid://csc6bs13p2x8f" path="res://assets/xButtonHover.png" id="16_sq5n2"]
+[ext_resource type="FontFile" uid="uid://bj7llu6e03742" path="res://fonts/superstar_memesbruh03.ttf" id="17_shhfq"]
+
+[sub_resource type="Theme" id="Theme_y55a1"]
+default_font = ExtResource("17_shhfq")
+Button/colors/font_color = Color(0.87451, 1, 0.87451, 1)
+Button/font_sizes/font_size = 32
+Button/styles/hover = ExtResource("1_absir")
+Button/styles/normal = ExtResource("2_pba51")
+Button/styles/pressed = ExtResource("3_ctcwr")
+Label/font_sizes/font_size = 48
+Label/fonts/font = ExtResource("17_shhfq")
+
+[sub_resource type="LabelSettings" id="LabelSettings_db7lq"]
+line_spacing = 10.0
+font_size = 48
+shadow_size = 9
+shadow_color = Color(0, 0, 0, 0.196078)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="Theme" id="Theme_77m3d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhlib"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b71w2"]
+size = Vector2(8, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bgba7"]
+size = Vector2(8, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0rar"]
+atlas = ExtResource("8_00tpb")
+region = Rect2(23, 0, 23, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66tem"]
+atlas = ExtResource("8_00tpb")
+region = Rect2(0, 0, 23, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6jcey"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0rar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66tem")
+}],
+"loop": false,
+"name": &"switch",
+"speed": 60.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6q3j1"]
+size = Vector2(24, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvnhs"]
+size = Vector2(290, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nu4s4"]
+size = Vector2(960, 20)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o8p67"]
+font = ExtResource("17_shhfq")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_y55a1")
+script = ExtResource("2_1brc3")
+next_scene = ExtResource("3_p5vf5")
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.207843, 0.0901961, 0.282353, 1)
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -307.0
+offset_right = 335.0
+offset_bottom = 99.0
+grow_horizontal = 2
+text = "Pixel Portals - Parkour"
+label_settings = SubResource("LabelSettings_db7lq")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.0
+offset_top = -114.0
+offset_right = 145.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_77m3d")
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="CreditsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Credits"
+
+[node name="Animation" type="Node2D" parent="."]
+
+[node name="Player" type="CharacterBody2D" parent="Animation"]
+position = Vector2(257, 79)
+collision_layer = 2
+collision_mask = 29
+script = ExtResource("4_l3226")
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Animation/Player"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_kieq7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animation/Player"]
+shape = SubResource("RectangleShape2D_rhlib")
+
+[node name="DelayedJumpTimer" type="Timer" parent="Animation/Player"]
+wait_time = 0.05
+one_shot = true
+
+[node name="Player2" type="CharacterBody2D" parent="Animation"]
+position = Vector2(257, 79)
+collision_layer = 2
+collision_mask = 29
+script = ExtResource("10_2kaw2")
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Animation/Player2"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_kieq7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animation/Player2"]
+shape = SubResource("RectangleShape2D_rhlib")
+
+[node name="DelayedJumpTimer" type="Timer" parent="Animation/Player2"]
+wait_time = 0.05
+one_shot = true
+
+[node name="Portal" type="Node2D" parent="Animation"]
+position = Vector2(9, 195)
+script = ExtResource("6_kbq2y")
+color = Color(1, 0, 0.388235, 1)
+
+[node name="PortalEntry" type="Area2D" parent="Animation/Portal"]
+position = Vector2(714, 118)
+rotation = 4.71238
+collision_layer = 4
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Animation/Portal/PortalEntry"]
+self_modulate = Color(0, 0, 1, 1)
+position = Vector2(-2.38419e-07, 0)
+texture = ExtResource("7_u1qrk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animation/Portal/PortalEntry"]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_b71w2")
+
+[node name="Particles" type="CPUParticles2D" parent="Animation/Portal/PortalEntry"]
+texture_filter = 1
+position = Vector2(7, 0)
+preprocess = 10.0
+speed_scale = 1.5
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(4, 15)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(0, 0, 1, 1)
+
+[node name="PortalExit" type="Area2D" parent="Animation/Portal"]
+position = Vector2(250, -125)
+rotation = 1.57079
+collision_layer = 4
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Animation/Portal/PortalExit"]
+self_modulate = Color(0, 0, 1, 1)
+texture = ExtResource("7_u1qrk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animation/Portal/PortalExit"]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_bgba7")
+
+[node name="Particles" type="CPUParticles2D" parent="Animation/Portal/PortalExit"]
+texture_filter = 1
+preprocess = 10.0
+speed_scale = 1.5
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(4, 15)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(0, 0, 1, 1)
+
+[node name="PortalSwitch" type="Area2D" parent="Animation/Portal"]
+visible = false
+position = Vector2(135, 0)
+collision_layer = 4
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="Icon" type="AnimatedSprite2D" parent="Animation/Portal/PortalSwitch"]
+self_modulate = Color(0, 0, 1, 1)
+position = Vector2(-13, -16)
+sprite_frames = SubResource("SpriteFrames_6jcey")
+animation = &"switch"
+centered = false
+
+[node name="SwitchCollision" type="CollisionShape2D" parent="Animation/Portal/PortalSwitch"]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_6q3j1")
+
+[node name="Walls" type="Node2D" parent="Animation"]
+
+[node name="Wall" type="StaticBody2D" parent="Animation/Walls"]
+position = Vector2(480, 266)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animation/Walls/Wall"]
+shape = SubResource("RectangleShape2D_xvnhs")
+
+[node name="Wall2" type="StaticBody2D" parent="Animation/Walls"]
+position = Vector2(991, 134)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animation/Walls/Wall2"]
+position = Vector2(-21, 3)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_nu4s4")
+
+[node name="Wall3" type="StaticBody2D" parent="Animation/Walls"]
+position = Vector2(11, 127)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animation/Walls/Wall3"]
+position = Vector2(-21, 3)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_nu4s4")
+
+[node name="TileMap" parent="Animation" instance=ExtResource("9_30h4m")]
+
+[node name="Portal2" type="Node2D" parent="Animation"]
+position = Vector2(9, 195)
+script = ExtResource("6_kbq2y")
+color = Color(0, 1, 0, 1)
+
+[node name="PortalEntry" type="Area2D" parent="Animation/Portal2"]
+position = Vector2(251, 118)
+rotation = 4.71238
+collision_layer = 4
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Animation/Portal2/PortalEntry"]
+self_modulate = Color(0, 0, 1, 1)
+position = Vector2(-2.38419e-07, 0)
+texture = ExtResource("7_u1qrk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animation/Portal2/PortalEntry"]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_b71w2")
+
+[node name="Particles" type="CPUParticles2D" parent="Animation/Portal2/PortalEntry"]
+texture_filter = 1
+position = Vector2(7, 0)
+preprocess = 10.0
+speed_scale = 1.5
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(4, 15)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(0, 0, 1, 1)
+
+[node name="PortalExit" type="Area2D" parent="Animation/Portal2"]
+position = Vector2(716, -125)
+rotation = 1.57079
+collision_layer = 4
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Animation/Portal2/PortalExit"]
+self_modulate = Color(0, 0, 1, 1)
+texture = ExtResource("7_u1qrk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animation/Portal2/PortalExit"]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_bgba7")
+
+[node name="Particles" type="CPUParticles2D" parent="Animation/Portal2/PortalExit"]
+texture_filter = 1
+preprocess = 10.0
+speed_scale = 1.5
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(4, 15)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(0, 0, 1, 1)
+
+[node name="PortalSwitch" type="Area2D" parent="Animation/Portal2"]
+visible = false
+position = Vector2(135, 0)
+collision_layer = 4
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="Icon" type="AnimatedSprite2D" parent="Animation/Portal2/PortalSwitch"]
+self_modulate = Color(0, 0, 1, 1)
+position = Vector2(-13, -16)
+sprite_frames = SubResource("SpriteFrames_6jcey")
+animation = &"switch"
+centered = false
+
+[node name="SwitchCollision" type="CollisionShape2D" parent="Animation/Portal2/PortalSwitch"]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_6q3j1")
+
+[node name="ItchButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 691.0
+offset_top = 321.0
+offset_right = 755.0
+offset_bottom = 385.0
+texture_normal = ExtResource("10_vkavs")
+texture_pressed = ExtResource("11_upl0m")
+texture_hover = ExtResource("12_x8fp7")
+
+[node name="XButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 228.0
+offset_top = 321.0
+offset_right = 292.0
+offset_bottom = 385.0
+texture_normal = ExtResource("14_fskxe")
+texture_pressed = ExtResource("15_ve4to")
+texture_hover = ExtResource("16_sq5n2")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 391.0
+offset_right = 300.0
+offset_bottom = 410.0
+text = "@pichiDev"
+label_settings = SubResource("LabelSettings_o8p67")
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 690.0
+offset_top = 391.0
+offset_right = 757.0
+offset_bottom = 410.0
+text = "Pichi Dev"
+label_settings = SubResource("LabelSettings_o8p67")
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -19.0
+offset_right = 249.0
+grow_vertical = 0
+text = " Author: Pichi dev"
+label_settings = SubResource("LabelSettings_o8p67")
+
+[node name="Label5" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -124.5
+offset_top = -19.0
+offset_right = 124.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Game jam: Platformer Challange #6"
+label_settings = SubResource("LabelSettings_o8p67")
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -249.0
+offset_top = -19.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Game jam host: GameFavorites "
+label_settings = SubResource("LabelSettings_o8p67")
+horizontal_alignment = 2
+
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="body_entered" from="Animation/Portal/PortalEntry" to="Animation/Portal" method="_onPortalBodyEntered" flags=18]
+[connection signal="body_entered" from="Animation/Portal/PortalSwitch" to="Animation/Portal" method="_onSwitchBodyEntered" flags=18]
+[connection signal="body_entered" from="Animation/Portal2/PortalEntry" to="Animation/Portal2" method="_onPortalBodyEntered" flags=18]
+[connection signal="body_entered" from="Animation/Portal2/PortalSwitch" to="Animation/Portal2" method="_onSwitchBodyEntered" flags=18]
+[connection signal="pressed" from="ItchButton" to="." method="_on_itch_button_pressed"]
+[connection signal="pressed" from="XButton" to="." method="_on_x_button_pressed"]
