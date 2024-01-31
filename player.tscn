@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bb3frs7ontu8q"]
+[gd_scene load_steps=5 format=3 uid="uid://bb3frs7ontu8q"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_2ry5u"]
 [ext_resource type="Texture2D" uid="uid://dgx7blicxr8io" path="res://assets/character.png" id="2_kxp20"]
+[ext_resource type="AudioStream" uid="uid://b2y3boh2w0vk5" path="res://audio/sfx/hit.wav" id="3_2u2tw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rhlib"]
 size = Vector2(16, 16)
@@ -23,3 +24,6 @@ shape = SubResource("RectangleShape2D_rhlib")
 [node name="DelayedJumpTimer" type="Timer" parent="."]
 wait_time = 0.05
 one_shot = true
+
+[node name="DieSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2u2tw")

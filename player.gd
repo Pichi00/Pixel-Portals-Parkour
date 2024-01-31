@@ -9,12 +9,15 @@ var start_position = Vector2.ZERO
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var delayedJump = false
 
-func die():
-	self.velocity = Vector2.ZERO
-	self.global_position = start_position
 
 func _ready():
 	start_position = self.global_position
+	$DieSound.volume_db = Global.sfx
+
+func die():
+	self.velocity = Vector2.ZERO
+	self.global_position = start_position
+	$DieSound.play()
 
 func _physics_process(delta):
 	# Add the gravity.

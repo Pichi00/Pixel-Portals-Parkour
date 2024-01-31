@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://clf47rhigib8s"]
+[gd_scene load_steps=36 format=3 uid="uid://clf47rhigib8s"]
 
 [ext_resource type="StyleBox" uid="uid://cogvh1n3w3d3o" path="res://themes/buttonHoverStyle.tres" id="1_absir"]
 [ext_resource type="Script" path="res://main_menu.gd" id="2_1brc3"]
@@ -7,11 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://woc4qp61aeib" path="res://levels/level1.tscn" id="3_p5vf5"]
 [ext_resource type="Script" path="res://player_main_menu.gd" id="4_l3226"]
 [ext_resource type="Texture2D" uid="uid://dgx7blicxr8io" path="res://assets/character.png" id="5_kieq7"]
-[ext_resource type="Script" path="res://portal.gd" id="6_kbq2y"]
 [ext_resource type="Texture2D" uid="uid://dso70e61fmwa2" path="res://assets/basicPortal.png" id="7_u1qrk"]
 [ext_resource type="Texture2D" uid="uid://baor3tdpihrjm" path="res://assets/switch.png" id="8_00tpb"]
-[ext_resource type="PackedScene" uid="uid://bbc3l3tmvv0xu" path="res://tile_map.tscn" id="9_30h4m"]
 [ext_resource type="Script" path="res://player2_main_menu.gd" id="10_2kaw2"]
+[ext_resource type="Script" path="res://portal_menu.gd" id="10_in2es"]
 [ext_resource type="Texture2D" uid="uid://cbou14ncmeovv" path="res://assets/ItchButton.png" id="10_vkavs"]
 [ext_resource type="Texture2D" uid="uid://btxbymt0tm5jn" path="res://assets/ItchButton-pressed.png" id="11_upl0m"]
 [ext_resource type="Texture2D" uid="uid://iv17272cv3gf" path="res://assets/ItchButton-hover.png" id="12_x8fp7"]
@@ -19,10 +18,13 @@
 [ext_resource type="Texture2D" uid="uid://d1xqt77yunjgi" path="res://assets/xButtonClick.png" id="15_ve4to"]
 [ext_resource type="Texture2D" uid="uid://csc6bs13p2x8f" path="res://assets/xButtonHover.png" id="16_sq5n2"]
 [ext_resource type="FontFile" uid="uid://bj7llu6e03742" path="res://fonts/superstar_memesbruh03.ttf" id="17_shhfq"]
+[ext_resource type="AudioStream" uid="uid://c4pk8r6r27njc" path="res://audio/music/menu.wav" id="20_3bp28"]
+[ext_resource type="Texture2D" uid="uid://b4vn7gqj351e" path="res://assets/plus16.png" id="20_o2fkv"]
+[ext_resource type="Texture2D" uid="uid://q3wobrhdf003" path="res://assets/minus16.png" id="21_b525b"]
+[ext_resource type="AudioStream" uid="uid://b2y3boh2w0vk5" path="res://audio/sfx/hit.wav" id="23_uadh2"]
 
 [sub_resource type="Theme" id="Theme_y55a1"]
 default_font = ExtResource("17_shhfq")
-Button/colors/font_color = Color(0.87451, 1, 0.87451, 1)
 Button/font_sizes/font_size = 32
 Button/styles/hover = ExtResource("1_absir")
 Button/styles/normal = ExtResource("2_pba51")
@@ -135,12 +137,14 @@ grow_vertical = 2
 theme = SubResource("Theme_77m3d")
 theme_override_constants/separation = 20
 alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Play"
 
 [node name="CreditsButton" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Credits"
 
@@ -186,7 +190,7 @@ one_shot = true
 
 [node name="Portal" type="Node2D" parent="Animation"]
 position = Vector2(9, 195)
-script = ExtResource("6_kbq2y")
+script = ExtResource("10_in2es")
 color = Color(1, 0, 0.388235, 1)
 
 [node name="PortalEntry" type="Area2D" parent="Animation/Portal"]
@@ -297,11 +301,9 @@ position = Vector2(-21, 3)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_nu4s4")
 
-[node name="TileMap" parent="Animation" instance=ExtResource("9_30h4m")]
-
 [node name="Portal2" type="Node2D" parent="Animation"]
 position = Vector2(9, 195)
-script = ExtResource("6_kbq2y")
+script = ExtResource("10_in2es")
 color = Color(0, 1, 0, 1)
 
 [node name="PortalEntry" type="Area2D" parent="Animation/Portal2"]
@@ -424,6 +426,7 @@ text = "Pichi Dev"
 label_settings = SubResource("LabelSettings_o8p67")
 
 [node name="Label4" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -435,6 +438,7 @@ text = " Author: Pichi dev"
 label_settings = SubResource("LabelSettings_o8p67")
 
 [node name="Label5" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -451,6 +455,7 @@ label_settings = SubResource("LabelSettings_o8p67")
 horizontal_alignment = 1
 
 [node name="Label6" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -465,6 +470,118 @@ text = "Game jam host: GameFavorites "
 label_settings = SubResource("LabelSettings_o8p67")
 horizontal_alignment = 2
 
+[node name="SFXSettings" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SFX+" type="Button" parent="SFXSettings"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 552.0
+offset_top = 348.0
+offset_right = 574.0
+offset_bottom = 370.0
+grow_vertical = 2
+icon = ExtResource("20_o2fkv")
+icon_alignment = 1
+
+[node name="SFX-" type="Button" parent="SFXSettings"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 386.0
+offset_top = 348.0
+offset_right = 408.0
+offset_bottom = 370.0
+grow_vertical = 2
+icon = ExtResource("21_b525b")
+icon_alignment = 1
+
+[node name="SFXLabel" type="Label" parent="SFXSettings"]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 362.0
+offset_right = 478.0
+offset_bottom = 397.0
+theme_override_font_sizes/font_size = 32
+text = "SFX"
+vertical_alignment = 1
+
+[node name="SFXVolumeLabel" type="Label" parent="SFXSettings"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 362.0
+offset_right = 537.0
+offset_bottom = 397.0
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_3bp28")
+autoplay = true
+
+[node name="MusicSettings" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Music+" type="Button" parent="MusicSettings"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 552.0
+offset_top = 300.0
+offset_right = 574.0
+offset_bottom = 322.0
+grow_vertical = 2
+icon = ExtResource("20_o2fkv")
+icon_alignment = 1
+
+[node name="Music-" type="Button" parent="MusicSettings"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 386.0
+offset_top = 300.0
+offset_right = 408.0
+offset_bottom = 322.0
+grow_vertical = 2
+icon = ExtResource("21_b525b")
+icon_alignment = 1
+
+[node name="MusicLabel" type="Label" parent="MusicSettings"]
+layout_mode = 2
+offset_left = 424.0
+offset_top = 315.0
+offset_right = 502.0
+offset_bottom = 350.0
+theme_override_font_sizes/font_size = 32
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicVolumeLabel" type="Label" parent="MusicSettings"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 314.0
+offset_right = 537.0
+offset_bottom = 349.0
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SFXSample" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_uadh2")
+
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="body_entered" from="Animation/Portal/PortalEntry" to="Animation/Portal" method="_onPortalBodyEntered" flags=18]
 [connection signal="body_entered" from="Animation/Portal/PortalSwitch" to="Animation/Portal" method="_onSwitchBodyEntered" flags=18]
@@ -472,3 +589,8 @@ horizontal_alignment = 2
 [connection signal="body_entered" from="Animation/Portal2/PortalSwitch" to="Animation/Portal2" method="_onSwitchBodyEntered" flags=18]
 [connection signal="pressed" from="ItchButton" to="." method="_on_itch_button_pressed"]
 [connection signal="pressed" from="XButton" to="." method="_on_x_button_pressed"]
+[connection signal="pressed" from="SFXSettings/SFX+" to="." method="_on_sfxp_pressed"]
+[connection signal="pressed" from="SFXSettings/SFX-" to="." method="_on_sfxm_pressed"]
+[connection signal="finished" from="MenuMusic" to="." method="_on_menu_music_finished"]
+[connection signal="pressed" from="MusicSettings/Music+" to="." method="_on_musicp_pressed"]
+[connection signal="pressed" from="MusicSettings/Music-" to="." method="_on_musicm_pressed"]

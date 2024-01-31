@@ -7,20 +7,16 @@ var portalSwitch
 
 func _ready():
 	_initiate()
-	$TeleportSound.volume_db = Global.sfx
-	$SwitchSound.volume_db = Global.sfx
 	portalExit = $PortalExit
 
 func _onPortalBodyEntered(body:Node2D):
 	body.velocity = Vector2.ZERO
 	body.global_position = portalExit.global_position
-	$TeleportSound.play()
 	
 
 func _onSwitchBodyEntered(_body:Node2D):
 	if(disabled):
 		disabled = false
-		$SwitchSound.play()
 		$PortalSwitch/Icon.play("switch")
 		$PortalEntry/CollisionShape2D.set_deferred("disabled", disabled)
 		$PortalEntry/Particles.emitting = !disabled

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1iigjg6hsnq5"]
+[gd_scene load_steps=10 format=3 uid="uid://c1iigjg6hsnq5"]
 
 [ext_resource type="PackedScene" uid="uid://d0t7c41jetwv2" path="res://background.tscn" id="1_gitd4"]
 [ext_resource type="PackedScene" uid="uid://bb3frs7ontu8q" path="res://player.tscn" id="2_1gd2m"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bbc3l3tmvv0xu" path="res://tile_map.tscn" id="5_pdl4d"]
 [ext_resource type="PackedScene" uid="uid://c3qhvb0r1a8bm" path="res://spikes.tscn" id="6_dn810"]
 [ext_resource type="PackedScene" uid="uid://c7c4nuhni0ek" path="res://goal.tscn" id="7_if0iv"]
+[ext_resource type="PackedScene" uid="uid://bxtl4iygw77ii" path="res://victory_screen.tscn" id="8_b8l1i"]
+[ext_resource type="Script" path="res://goalLvl6.gd" id="8_pw1pk"]
 
 [node name="Level4" type="Node2D"]
 
@@ -505,6 +507,8 @@ position = Vector2(432, 16)
 
 [node name="Goal" parent="." instance=ExtResource("7_if0iv")]
 position = Vector2(944, 48)
+script = ExtResource("8_pw1pk")
+targetScene = ExtResource("8_b8l1i")
 
 [editable path="Platforms/Platform2"]
 [editable path="Platforms/Platform3"]

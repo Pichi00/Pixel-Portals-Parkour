@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhk3yp8fke6kt"]
+[gd_scene load_steps=12 format=3 uid="uid://dhk3yp8fke6kt"]
 
 [ext_resource type="Script" path="res://portal.gd" id="1_elcb5"]
 [ext_resource type="Texture2D" uid="uid://dso70e61fmwa2" path="res://assets/basicPortal.png" id="2_yej17"]
+[ext_resource type="AudioStream" uid="uid://dp0h1ofxpsf5a" path="res://audio/sfx/portal.wav" id="4_e134k"]
 [ext_resource type="Texture2D" uid="uid://baor3tdpihrjm" path="res://assets/switch.png" id="4_koga7"]
+[ext_resource type="AudioStream" uid="uid://bh2qldfbu4uu7" path="res://audio/sfx/switch.wav" id="5_srmhd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b71w2"]
 size = Vector2(8, 48)
@@ -114,6 +116,12 @@ centered = false
 [node name="SwitchCollision" type="CollisionShape2D" parent="PortalSwitch"]
 position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_6q3j1")
+
+[node name="TeleportSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_e134k")
+
+[node name="SwitchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_srmhd")
 
 [connection signal="body_entered" from="PortalEntry" to="." method="_onPortalBodyEntered"]
 [connection signal="body_entered" from="PortalSwitch" to="." method="_onSwitchBodyEntered"]

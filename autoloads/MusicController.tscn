@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://yu1x65c2nh8u"]
+
+[ext_resource type="Script" path="res://autoloads/MusicController.gd" id="1_ig26w"]
+[ext_resource type="AudioStream" uid="uid://ck387djg21jvc" path="res://audio/music/gameplay.wav" id="2_4i3ff"]
+[ext_resource type="AudioStream" uid="uid://dabxppddql88p" path="res://audio/sfx/goal.wav" id="3_cqnsj"]
+
+[node name="MusicController" type="Node"]
+script = ExtResource("1_ig26w")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4i3ff")
+
+[node name="GoalSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_cqnsj")
+
+[connection signal="finished" from="Music" to="." method="_on_music_finished"]
