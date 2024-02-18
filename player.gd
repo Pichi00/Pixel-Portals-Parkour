@@ -7,7 +7,7 @@ var start_position = Vector2.ZERO
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var delayedJump = false
+var queuedJump = false
 
 
 func _ready():
@@ -23,15 +23,18 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	elif queuedJump:
+		jump()
 	else:
 		$DelayedJumpTimer.start()
-		delayedJump = true
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_up") and (is_on_floor() or not $DelayedJumpTimer.is_stopped()) :
-		$DelayedJumpTimer.stop()
-		delayedJump = false
-		velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_pressed("ui_up"):
+		if (is_on_floor() or not $DelayedJumpTimer.is_stopped()) :
+			jump()
+		else:
+			$JumpInputBufferingTimer.start()
+			queuedJump = true
 
 	# Handle movement
 	var direction = Input.get_axis("ui_left", "ui_right")
@@ -41,3 +44,12 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+
+func jump():
+	$DelayedJumpTimer.stop()
+	velocity.y = JUMP_VELOCITY
+	print($DelayedJumpTimer.time_left)
+
+func _on_jump_input_buffering_timer_timeout():
+	queuedJump = false

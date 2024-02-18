@@ -22,8 +22,14 @@ texture = ExtResource("2_kxp20")
 shape = SubResource("RectangleShape2D_rhlib")
 
 [node name="DelayedJumpTimer" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.08
 one_shot = true
 
 [node name="DieSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_2u2tw")
+
+[node name="JumpInputBufferingTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="JumpInputBufferingTimer" to="." method="_on_jump_input_buffering_timer_timeout"]
